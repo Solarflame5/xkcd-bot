@@ -1,6 +1,7 @@
 # NOTE: THIS CODE IS WORK IN PROGRESS, DO NOT USE THIS CODE, IT'S TERRIBLE
 
 import discord
+from discord.ext import commands
 import requests
 import json
 
@@ -28,17 +29,15 @@ bot_token = token_file.read()
 token_file.close()
 
 client = discord.Client()
+client = commands.Bot(command_prefix="!")
 
 @client.event
 async def on_ready():
     print('logged in as {0.user}'.format(client))
 
-@client.event # THIS IS ONLY TEMPORARY! DO NOT USE THIS
-async def on_message(message):
-    if message.author == client.user:
-        return
-    if message.content.startswith("!xkcd"):
-        num = message.content[6:]
-        await message.channel.send(scrapeXKCD(num)["img"])
+@client.command()
+async def xkcd(comic, number=None):
+    requested_comic = scrapeXKCD(number)
+    await comic.send(embed=discord.Embed(title=requested_comic["title"], description=requested_comic["alt"]).set_image(url=requested_comic["img"]))
 
 client.run(bot_token)
