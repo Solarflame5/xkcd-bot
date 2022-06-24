@@ -4,6 +4,7 @@ import requests
 import json # Used to turn xkcd's comic .json into a python dictionary
 import datetime # Used to format comic date for the embed timestamp
 import re # Used to parse duckduckgo search results
+from pathlib import Path # for... finding the token file from relative path???
 
 def findXkcdUrlFromNumber(command_input): # Generate the URL to scrape from the provided number
     if command_input == None: # If no input has been given, scrape latest comic.
@@ -39,9 +40,9 @@ def scrapeXKCD(xkcd_url):
     return xkcd_content
 
 # Read bot token from "token.txt" in the same folder as "main.py"
-token_file = open("token.txt")
-bot_token = token_file.read()
-token_file.close()
+token_path = Path(__file__).with_name("token.txt") # shamelessly stolen from stackoverflow
+with token_path.open("r") as token_file: # Kazani told use with statement instead
+    bot_token = token_file.read()
 
 intents = discord.Intents.default()
 intents.message_content = False
