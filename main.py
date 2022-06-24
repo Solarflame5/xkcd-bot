@@ -44,8 +44,7 @@ token_path = Path(__file__).with_name("token.txt") # shamelessly stolen from sta
 with token_path.open("r") as token_file: # Kazani told use with statement instead
     bot_token = token_file.read()
 
-intents = discord.Intents.default()
-intents.message_content = False
+intents = discord.Intents.none() # bot only uses slash commands, no intents needed
 
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
