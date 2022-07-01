@@ -1,2 +1,5 @@
 #bot token
 /token.txt
+
+#log file
+/log.txt
