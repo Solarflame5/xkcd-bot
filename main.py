@@ -52,6 +52,7 @@ tree = app_commands.CommandTree(client)
 @client.event
 async def on_ready():
     print('logged in as {0.user}'.format(client))
+    # await tree.sync() # ONLY UNCOMMENT ONCE WHEN YOU RUN THE BOT FOR THE FIRST TIME
 
 @tree.command(name="xkcd", description="Send an xkcd comic in chat.")
 @app_commands.describe(input="The comic's number or title")
