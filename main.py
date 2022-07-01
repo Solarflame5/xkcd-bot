@@ -56,6 +56,7 @@ async def on_ready():
 @tree.command(name="xkcd", description="Send an xkcd comic in chat.")
 @app_commands.describe(input="The comic's number or title")
 async def sendComic(interaction: discord.Interaction, input: str=None):
+    await interaction.response.defer(ephemeral=False, thinking=True) # oh god why is there no documentation for this
     print("comic requested with input: " + str(input))
     try: # Check if input is a number or not
         xkcd_url = findXkcdUrlFromNumber(input) # Get xkcd URL using provided number
@@ -98,6 +99,6 @@ async def sendComic(interaction: discord.Interaction, input: str=None):
         comic_embed.set_footer(text="No input provided")
     else:
         comic_embed.set_footer(text="Input string: " + input)
-    await interaction.response.send_message(embed=comic_embed, ephemeral=False)
+    await interaction.followup.send(embed=comic_embed, ephemeral=False)
 
 client.run(bot_token)
