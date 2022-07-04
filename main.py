@@ -73,7 +73,7 @@ async def sendComic(interaction: discord.Interaction, input: str=None):
                 colour=discord.Colour.from_rgb(200, 150, 150)
             )
             error_embed.set_footer(text="Search string: " + input)
-            await interaction.response.send_message(embed=error_embed, ephemeral=True)
+            await interaction.followup.send(embed=error_embed, ephemeral=True)
             return
     try:
         requested_comic = scrapeXKCD(xkcd_url)
@@ -85,7 +85,7 @@ async def sendComic(interaction: discord.Interaction, input: str=None):
             colour=discord.Colour.from_rgb(200, 150, 150)
         )
         error_embed.set_footer(text="Input number: " + input)
-        await interaction.response.send_message(embed=error_embed, ephemeral=True)
+        await interaction.followup.send(embed=error_embed, ephemeral=True)
         return
     print("returned url: " + xkcd_url)
     comic_embed = discord.Embed(
