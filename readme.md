@@ -17,6 +17,7 @@ type `/xkcd [partial comic title]` or `/xkcd [comic number]` in chat.
 
 "Truly a bot that the founding fathers would be proud of." -Zach
 
-"i'll review it tomorrow, rushing through a chemistry hw rn" -[Fishie](https://github.com/MuhammedAliSolkar)
+" ! The application did not respond
+👁️ Only you can see this • Dismiss message" -[Fishie](https://github.com/MuhammedAliSolkar)
 ## Disclaimer
 this is my first time making a discord bot and i know absolutely nothing about [discord.py](https://github.com/Rapptz/discord.py), feel free to criticise my code
