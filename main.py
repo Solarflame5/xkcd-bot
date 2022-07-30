@@ -14,12 +14,13 @@ def findXkcdUrlFromNumber(command_input): # Generate the URL to scrape from the 
         xkcd_url = "https://www.xkcd.com/" + str(xkcd_num) + "/info.0.json"
     return xkcd_url
 
-def findXkcdUrlFromText(command_input): # Generate URL from provided text by searching it in duckduckgo, this whole function is horrible and will be rewritten # pylint: disable=invalid-name
+async def findXkcdUrlFromText(command_input): # Generate URL from provided text by searching it in duckduckgo, this whole function is horrible and will be rewritten # pylint: disable=invalid-name
     ddg_url_template = "https://html.duckduckgo.com/html/?q=site:xkcd.com+"
     xkcd_regex = r"xkcd\.com\/\d+\/?/"
     ddg_url = ddg_url_template + command_input.replace(" ", "+")
     print("searching using url: " + ddg_url)
-    ddg_results = requests.get(ddg_url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:101.0) Gecko/20100101 Firefox/101.0"})
+    async with aiohttp.ClientSession() as session:
+        ddg_results = session.get(ddg_url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:101.0) Gecko/20100101 Firefox/101.0"})
     # make the request with a real useragent so ddg doesn't block request(taken from my firefox)
     xkcd_url_raw = re.search(xkcd_regex, ddg_results.text).group(0)
     xkcd_url = "https://www." + xkcd_url_raw + "info.0.json"
