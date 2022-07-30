@@ -69,7 +69,7 @@ async def sendComic(interaction: discord.Interaction, input: str=None): # pylint
     except ValueError:
         print("input is not a number, searching with duckduckgo")
         try:
-            xkcd_url = findXkcdUrlFromText(input) # Search for xkcd URL using DuckDuckGo
+            xkcd_url = await findXkcdUrlFromText(input) # Search for xkcd URL using DuckDuckGo
         except: # pylint: disable=bare-except
             print("comic not found, sending error message")
             error_embed = discord.Embed(
