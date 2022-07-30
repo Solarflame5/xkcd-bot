@@ -2,7 +2,7 @@ from pathlib import Path # for... finding the token file from relative path???
 import json # Used to turn xkcd's comic .json into a python dictionary
 import datetime # Used to format comic date for the embed timestamp
 import re # Used to parse duckduckgo search results
-import requests
+import aiohttp
 import discord
 from discord import app_commands
 
@@ -25,11 +25,13 @@ def findXkcdUrlFromText(command_input): # Generate URL from provided text by sea
     xkcd_url = "https://www." + xkcd_url_raw + "info.0.json"
     return xkcd_url
 
-def scrapeXKCD(xkcd_url): # pylint: disable=invalid-name
+async def scrapeXKCD(xkcd_url): # pylint: disable=invalid-name
     xkcd_json = requests.get(xkcd_url) # TEMPORARY! will switch to aiohttp
+    async with aiohttp.ClientSession() as session:
+        xkcd_json = session.get(xkcd_url)
     if xkcd_json.status_code != 200:
         raise Exception("ComicNotFound")
-    xkcd_raw = json.loads(xkcd_json.content) # parse json into dictionary
+    xkcd_raw = await xkcd_json.json() # parse json into dictionary
     date = datetime.datetime(int(xkcd_raw["year"]), int(xkcd_raw["month"]), int(xkcd_raw["day"]))
     # generate date object from comic year, month, and day
     xkcd_content = {
@@ -78,7 +80,7 @@ async def sendComic(interaction: discord.Interaction, input: str=None): # pylint
             await interaction.followup.send(embed=error_embed, ephemeral=True)
             return
     try:
-        requested_comic = scrapeXKCD(xkcd_url)
+        requested_comic = await scrapeXKCD(xkcd_url)
     except: # pylint: disable=bare-except
         print("invalid input, sending error message")
         error_embed = discord.Embed(
