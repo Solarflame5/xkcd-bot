@@ -6,6 +6,16 @@ import requests
 import discord
 from discord import app_commands
 
+
+class Client(discord.Client):
+    def __init__(self, *, intents: discord.Intents):
+        super().__init__(intents=intents)
+        self.tree = app_commands.CommandTree(self)
+
+    async def setup_hook(self):
+        await self.tree.sync()
+
+
 def findXkcdUrlFromNumber(command_input): # Generate the URL to scrape from the provided number # pylint: disable=invalid-name
     if command_input is None: # If no input has been given, scrape latest comic.
         xkcd_url = "https://www.xkcd.com/info.0.json"
@@ -48,8 +58,7 @@ with token_path.open("r") as token_file: # Kazani told use with statement instea
 
 intents = discord.Intents.none() # bot only uses slash commands, no intents needed
 
-client = discord.Client(intents=intents)
-tree = app_commands.CommandTree(client)
+client = Client(intents=intents)
 
 @client.event
 async def on_ready():
