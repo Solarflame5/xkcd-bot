@@ -64,7 +64,7 @@ client = Client(intents=intents)
 async def on_ready():
     print('logged in as {0.user}'.format(client))
 
-@tree.command(name="xkcd", description="Send an xkcd comic in chat.")
+@client.tree.command(name="xkcd", description="Send an xkcd comic in chat.")
 @app_commands.describe(input="The comic's number or title")
 async def sendComic(interaction: discord.Interaction, input: str=None): # pylint: disable=redefined-builtin, disable=invalid-name
     await interaction.response.defer(ephemeral=False, thinking=True)
