@@ -1,7 +1,9 @@
 # Discord XKCD bot
 This bot scrapes an [xkcd](https://xkcd.com/) comic with the given number and sends it in chat
 ![Example screenshot](screenshots/example.png)
-## Requirements
+## Invite to your server
+By clicking [here](https://discord.com/api/oauth2/authorize?client_id=978295243856285747&permissions=274877908992&scope=bot%20applications.commands) you can invite the version of the bot I'm hosting on my Raspberry Pi 1 B+ to your own server, the bot responds a bit slow when running on the Pi, so I recommend hosting the bot yourself instead of using my invite.
+## Requirements for hosting
 - [discord.py](https://github.com/Rapptz/discord.py)'s development version.
 - [Requests](https://github.com/psf/requests)
 ## Setup
