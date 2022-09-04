@@ -15,7 +15,7 @@ type `/xkcd [partial comic title]` or `/xkcd [comic number]` in chat.
 ## Reviews
 "While xkcd-reading bots may be a massively oversaturated area with little to distinguish one bot from another, SolarFlame5's xkcd bot is unique in having been written by SolarFlame5." -[gollark](https://www.osmarks.net/)
 
-"It could only be more perfect if it was written in Java." -[Wyran](https://github.com/Solarflame5/xkcd-bot/)
+"It could only be more perfect if it was written in Java." -Wyran
 
 "Truly a bot that the founding fathers would be proud of." -Zach
 
