@@ -1,5 +1,5 @@
 # Discord XKCD bot
-This bot scrapes an [xkcd](https://xkcd.com/) comic with the given number and sends it in chat
+This bot automatically finds an [xkcd](https://xkcd.com/) from the given partial/full title and embeds it in chat
 ![Example screenshot](screenshots/example.png)
 ## Invite to your server
 By clicking [here](https://discord.com/api/oauth2/authorize?client_id=978295243856285747&permissions=274877908992&scope=bot%20applications.commands) you can invite the version of the bot I'm hosting on my Raspberry Pi 1 B+ to your own server, the bot responds a bit slow when running on the Pi, so I recommend hosting the bot yourself instead of using my invite.
@@ -21,4 +21,7 @@ type `/xkcd [partial comic title]` or `/xkcd [comic number]` in chat.
 
 "i'll review it tomorrow, rushing through a chemistry hw rn" -[Fishie](https://github.com/MuhammedAliSolkar)
 ## Disclaimer
-this is my first time making a discord bot and i know absolutely nothing about [discord.py](https://github.com/Rapptz/discord.py), feel free to criticise my code
+This bot was a simple Python project I made for fun, It's not meant to be the best possible bot and has its own problems, here are some alternative bots made by some acquaintances of mine:
+- https://github.com/SomeHybrid/xkcd-bot - Another bot written in Python.
+- https://github.com/notdap/Xkcd-Bot - This bot is written in C# and uses a local database to get the comics which is faster.
+- https://github.com/Neppkun/solarSucks.js - This one is written in JavaScript
