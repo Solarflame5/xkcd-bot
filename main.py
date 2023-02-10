@@ -20,7 +20,7 @@ def findXkcdUrlFromText(command_input): # Generate URL from provided text by sea
     ddg_url = ddg_url_template + command_input.replace(" ", "+")
     print("searching using url: " + ddg_url)
     ddg_results = requests.get(ddg_url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:101.0) Gecko/20100101 Firefox/101.0"})
-    # make the request with a real useragent so ddg doesn't block request(taken from my firefox install)
+    # ddg doesn't provide results if you use the default user agent
     xkcd_url_raw = re.search(xkcd_regex, ddg_results.text).group(0)
     xkcd_url = "https://www." + xkcd_url_raw + "info.0.json"
     return xkcd_url
@@ -42,8 +42,8 @@ def scrapeXKCD(xkcd_url):
     return xkcd_content
 
 # Read bot token from "token.txt" in the same folder as "main.py"
-token_path = Path(__file__).with_name("token.txt") # shamelessly stolen from stackoverflow
-with token_path.open("r") as token_file: # Kazani told use with statement instead
+token_path = Path(__file__).with_name("token.txt")
+with token_path.open("r") as token_file:
     bot_token = token_file.read()
 
 intents = discord.Intents.none() # bot only uses slash commands, no intents needed
