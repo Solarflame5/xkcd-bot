@@ -24,4 +24,3 @@ type `/xkcd [partial comic title]` or `/xkcd [comic number]` in chat.
 This bot was a simple Python project I made for fun, It's not meant to be the best possible bot and has its own problems, here are some alternative bots made by some acquaintances of mine:
 - https://github.com/SomeHybrid/xkcd-bot - Another bot written in Python.
 - https://github.com/notdap/Xkcd-Bot - This bot is written in C# and uses a local database to get the comics which is faster.
-- https://github.com/Neppkun/solarSucks.js - This one is written in JavaScript
